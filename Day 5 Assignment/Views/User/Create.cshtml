@@ -1,0 +1,44 @@
+﻿@using Model
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<style>
+    .validation-summary-errors {
+        color: red;
+    }
+    .navbar-nav .nav-item:last-child {
+        display: none;
+    }
+</style>
+
+<div class="w-25 m-auto">
+    <h2>Create Account</h2>
+    <form action="/User/Create" method="post">
+        <label class="form-label">Firstname</label>
+        <input type="text" name="firstname" class="form-control" />
+        <label class="form-label">Lastname</label>
+        <input type="text" name="lastname" class="form-control" />
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" />
+        <label class="form-label">Email</label>
+        <input type="email" name="Email" class="form-control" />
+        <label class="form-label">Phone</label>
+        <input type="tel" name="Phone" class="form-control" />
+        <label class="form-label">Passowrd</label>
+        <input type="password" name="password" class="form-control" />
+        <label class="form-label">Gender</label>
+        <input type="radio" name="gender" value="@Gender.Male" />
+        <label>Male</label>
+        <input type="radio" name="gender" value="@Gender.Female" />
+        <label>Female</label>
+        <br />
+        <input type="submit" value="Signup" class="btn btn-success" />
+        <input type="reset" value="Cancel" class="btn btn-primary" />
+    </form>
+    @Html.ValidationSummary()
+</div>
+
+@section Title{
+    @ViewBag.Title
+} 

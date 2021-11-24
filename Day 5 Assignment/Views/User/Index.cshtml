@@ -1,0 +1,53 @@
+﻿@using ViewModels
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<UserViewModel>
+@*@model IEnumerable<UserViewModel>*@
+
+@{
+    Layout = "~/Views/_layout.cshtml";
+}
+
+<style>
+    .navbar-nav .nav-item:last-child {
+        display: none;
+    }
+</style>
+
+<h1 class="text-center">All Users</h1>
+<div class="w-75 m-auto">
+    @using (Ajax.BeginForm("Search", "User", new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "TBLContainer"
+    }))
+    {
+        @Html.Label("ID : ")
+        @Html.TextBox("ID")
+        @Html.Label("Phone : ")
+        @Html.TextBox("Phone")
+        @Html.Label("Email : ")
+        @Html.TextBox("Email")
+        <input type="submit" value="Search" class="btn btn-secondary" />
+        // @Html.ActionLink("Search","Search",null,new { @class = "btn btn-secondary"});
+    }
+</div>
+<div id="TBLContainer">
+    @Html.Partial("_UsersData", Model)
+</div>
+@section Profile{
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            @Session["Firstname"]
+        </button>
+        <ul class="dropdown-menu" style="left: auto; right:0; " aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" style="text-align:right" href="~/User/Details/@Session["userID"]">Profile</a></li>
+            <li><a class="dropdown-item" style="text-align:right" href="~/User/Logout">Logout</a></li>
+        </ul>
+    </div>
+}
+
+@section Title{
+    @ViewBag.Title
+    } 

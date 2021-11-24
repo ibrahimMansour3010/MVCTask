@@ -1,0 +1,60 @@
+﻿@using ViewModels
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<UserViewModel>
+@*@model IEnumerable<UserViewModel>*@
+
+<style>
+    .HeaderLink{
+        color:#000;
+        text-decoration:none;
+    }
+    .HeaderLink:hover{
+        color:#000;
+    }
+</style>
+
+<table class="table w-100 m-auto table-bounded" id="tblContent">
+    <tr class="text-center">
+        <th>@Html.ActionLink("ID", "Index",new { PropertyName = "ID" },new { @class = "HeaderLink"})</th>
+        <th>@Html.ActionLink("Firstname", "Index",new { PropertyName = "Firstname" },new { @class = "HeaderLink"})</th>
+        <th>@Html.ActionLink("Lastname", "Index",new { PropertyName = "Lastname" },new { @class = "HeaderLink"})</th>
+        <th>@Html.ActionLink("Email", "Index",new { PropertyName = "Email" },new { @class = "HeaderLink"})</th>
+        <th>@Html.ActionLink("Phone", "Index",new { PropertyName = "Phone" },new { @class = "HeaderLink"})</th>
+        <th>@Html.LabelFor(i => i.FirstOrDefault().Gender)</th>
+        <th>Settings</th>
+    </tr>
+    @foreach (UserViewModel item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Firstname</td>
+            <td>@item.Lastname</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td>@item.Gender</td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = @item.ID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Edit", "Edit", new { id = @item.ID }, new { @class = "btn btn-success" })
+                @Ajax.ActionLink("Delete", "Delete", new { id = @item.ID }, new AjaxOptions()
+                {
+               UpdateTargetId = "TBLContainer",
+                    InsertionMode = InsertionMode.Replace
+           }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.PagedListPager(Model, PageNumber => Url.Action("Index", "User", new { PageNumber }),new PagedListRenderOptions() {
+    DisplayLinkToIndividualPages = true,
+    DisplayPageCountAndCurrentLocation = false,
+    LiElementClasses = new string[] { "page-item"},
+})
+
+<script>
+    var lies = document.querySelectorAll(".page-item a");
+    for (var i = 0; i < lies.length; i++) {
+        lies[i].classList.add("page-link");
+    }
+</script>

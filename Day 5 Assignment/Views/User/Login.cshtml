@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = "~/Views/_layout.cshtml";
+}
+
+<h1 class="text-center">Login</h1>
+<form class="w-25 m-auto" action="/User/Login" method="post">
+    <label class="form-label">Username</label>
+    <input type="text" name="username" class="form-control" />
+
+    <label class="form-label">Username</label>
+    <input type="password" name="password" class="form-control" />
+    <br/>
+    <input type="submit" value="Login" class="btn btn-success" />
+</form>
+@section Title{
+    @ViewBag.Title
+    } 

@@ -1,0 +1,19 @@
+﻿@using Model
+@model User
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<style>
+    .navbar-nav .nav-item:last-child {
+        display: none;
+    }
+</style>
+<h2>Details</h2>
+
+@Html.DisplayForModel()
+
+
+@section Title{
+    @ViewBag.Title
+} 

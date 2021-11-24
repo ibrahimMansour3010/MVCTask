@@ -1,0 +1,47 @@
+﻿@using Model
+@using ViewModels
+@model User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<style>
+    .navbar-nav .nav-item:last-child {
+        display: none;
+    }
+</style>
+<h2>Edit</h2>
+<div class="w-50">
+
+    @using (@Html.BeginForm("Edit", "User", "POST"))
+    {
+        @Html.LabelFor(i => i.ID, new { @class = "label-control" })
+        @Html.TextBoxFor(i => i.ID, new { @class = "form-control", @readonly = "true" })
+        @Html.LabelFor(i => i.Firstname, new { @class = "label-control" })
+        @Html.TextBoxFor(i => i.Firstname, new { @class = "form-control" })
+        @Html.LabelFor(i => i.Lastname, new { @class = "label-control" })
+        @Html.TextBoxFor(i => i.Lastname, new { @class = "form-control" })
+        @Html.LabelFor(i => i.Username, new { @class = "label-control" })
+        @Html.TextBoxFor(i => i.Username, new { @class = "form-control" })
+        @Html.LabelFor(i => i.Password, new { @class = "label-control" })
+        @Html.TextBoxFor(i => i.Password, new { @class = "form-control" })
+        @Html.LabelFor(i => i.Email, new { @class = "label-control" })
+        @Html.TextBoxFor(i => i.Email, new { @class = "form-control" })
+        @Html.LabelFor(i => i.Phone, new { @class = "label-control" })
+        @Html.TextBoxFor(i => i.Phone, new { @class = "form-control" })
+        @Html.LabelFor(i => i.Gender, new { @class = "label-control" })
+        @Html.RadioButtonFor(i => i.Gender, Gender.Male)
+        @Html.Label("Male")
+        @Html.RadioButtonFor(i => i.Gender, Gender.Female)
+        @Html.Label("Female")
+        <br />
+        <input type="submit" value="Save" class="btn btn-success" />
+    }--------------------------------------------------------------------
+
+</div>
+@Html.ValidationSummary()
+
+@section Title{
+    @ViewBag.Title
+} 
